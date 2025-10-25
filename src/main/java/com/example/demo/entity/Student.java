@@ -1,6 +1,10 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "students")
@@ -11,14 +15,14 @@ public class Student {
     private Long id;
 
     private String name;
-    private int age;
+    private Integer age; // Changed from int to Integer for partial updates
     private String email;
 
     // Default constructor
     public Student() {}
 
     // Parameterized constructor
-    public Student(String name, int age, String email) {
+    public Student(String name, Integer age, String email) {
         this.name = name;
         this.age = age;
         this.email = email;
@@ -31,8 +35,8 @@ public class Student {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
-    public int getAge() { return age; }
-    public void setAge(int age) { this.age = age; }
+    public Integer getAge() { return age; }
+    public void setAge(Integer age) { this.age = age; }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
