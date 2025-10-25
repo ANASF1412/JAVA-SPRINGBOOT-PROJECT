@@ -1,11 +1,12 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.Student;
-import com.example.demo.repository.StudentRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
 
 @Service
 public class StudentService {
@@ -38,9 +39,17 @@ public class StudentService {
     }
 
     // UPDATE
-    public Student updateStudent(Student student) {
-        return studentRepository.save(student);
-    }
+public Student updateStudent(Long id, Student updatedStudent) {
+    return studentRepository.findById(id)
+            .map(student -> {
+                student.setName(updatedStudent.getName());
+                student.setAge(updatedStudent.getAge());
+                student.setEmail(updatedStudent.getEmail());
+                return studentRepository.save(student);
+            })
+            .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
+}
+
 
     // DELETE
     public void deleteStudent(Long id) {
