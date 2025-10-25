@@ -22,17 +22,17 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    // READ all students
+    // READ all
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    // READ student by ID
+    // READ by ID
     public Optional<Student> getStudentById(Long id) {
         return studentRepository.findById(id);
     }
 
-    // READ student(s) by name (case-insensitive, partial match)
+    // READ by name
     public List<Student> getStudentByName(String name) {
         return studentRepository.findByNameContainingIgnoreCase(name);
     }
@@ -53,15 +53,9 @@ public class StudentService {
     public Student partialUpdateStudent(Long id, Student updatedStudent) {
         return studentRepository.findById(id)
                 .map(student -> {
-                    if (updatedStudent.getName() != null) {
-                        student.setName(updatedStudent.getName());
-                    }
-                    if (updatedStudent.getAge() != null) {
-                        student.setAge(updatedStudent.getAge());
-                    }
-                    if (updatedStudent.getEmail() != null) {
-                        student.setEmail(updatedStudent.getEmail());
-                    }
+                    if (updatedStudent.getName() != null) student.setName(updatedStudent.getName());
+                    if (updatedStudent.getAge() != null) student.setAge(updatedStudent.getAge());
+                    if (updatedStudent.getEmail() != null) student.setEmail(updatedStudent.getEmail());
                     return studentRepository.save(student);
                 })
                 .orElseThrow(() -> new RuntimeException("Student not found with id: " + id));
