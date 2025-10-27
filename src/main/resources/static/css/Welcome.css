@@ -1,0 +1,163 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+/* Body & Background */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    overflow-x: hidden;
+}
+
+/* Animated Gradient Circles */
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(10px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+.circle1 { width: 200px; height: 200px; background: #00ffff; top: 10%; left: 20%; animation-delay: 0s; }
+.circle2 { width: 150px; height: 150px; background: #ff00ff; top: 70%; left: 10%; animation-delay: 2s; }
+.circle3 { width: 250px; height: 250px; background: #ffd700; top: 30%; left: 70%; animation-delay: 4s; }
+
+/* Container Card */
+.container {
+    position: relative;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 60px 100px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    z-index: 10;
+    animation: fadeIn 1.5s ease-in-out;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* Headings */
+h1, h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
+}
+
+/* Paragraphs */
+p, span {
+    font-size: 1.1em;
+    color: #fff;
+    text-shadow: 0 0 3px #0ff;
+}
+
+/* Highlighted text */
+.highlight {
+    font-weight: 700;
+    color: #ffd700;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 40px 30px;
+    }
+    h1 { font-size: 2.2em; }
+    h2 { font-size: 1.8em; }
+}
+
+/* =========================
+   Student Page Styles
+   ========================= */
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+}
+table th, table td {
+    padding: 12px;
+    border-bottom: 1px solid #00ffff;
+}
+table th {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1em;
+    color: #00ffff;
+}
+table tr:hover {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+/* Buttons */
+.btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    font-family: 'Roboto Mono', monospace;
+}
+.btn-add { background:#00ffff; color:#000; }
+.btn-edit { background:#ffd700; color:#000; }
+.btn-delete { background:#ff5722; color:#000; }
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+}
+
+/* Form Inputs */
+input, label {
+    display:block;
+    width: 90%;
+    margin:10px auto;
+    font-family: 'Roboto Mono', monospace;
+}
+input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    text-shadow: 0 0 2px #0ff;
+}
+button.submit-btn {
+    display:block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    border:none;
+    border-radius:5px;
+    background:#00ffff;
+    font-weight:bold;
+    color:#000;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+button.submit-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #0ff, 0 0 30px #0ff inset;
+}

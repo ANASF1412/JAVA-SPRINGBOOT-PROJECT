@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management</title>
+    <link rel="stylesheet" type="text/css" href="/css/Welcome.css" th:href="@{/css/Welcome.css}">
+    <style>
+        /* Neon Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+        }
+        table th, table td {
+            padding: 12px;
+            border-bottom: 1px solid #00ffff;
+        }
+        table th {
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffff;
+            font-size: 1.2em;
+        }
+        table tr:hover {
+            background: rgba(0,255,255,0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-add { background:#00ffff; color:#000; }
+        .btn-edit { background:#ffd700; color:#000; }
+        .btn-delete { background:#ff5722; color:#000; }
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+        }
+
+        /* Form inputs */
+        input, label {
+            display:block;
+            width: 90%;
+            margin:10px auto;
+            font-family: 'Roboto Mono', monospace;
+        }
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            text-shadow: 0 0 2px #0ff;
+        }
+        button.submit-btn {
+            display:block;
+            margin: 20px auto;
+            padding: 10px 25px;
+            border:none;
+            border-radius:5px;
+            background:#00ffff;
+            font-weight:bold;
+            color:#000;
+            cursor:pointer;
+            transition: all 0.3s ease;
+        }
+        button.submit-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #0ff, 0 0 30px #0ff inset;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating neon circles -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <!-- Main container -->
+    <div class="container">
+        <h1>Student Management</h1>
+
+        <!-- Add new student -->
+        <a href="/students/new" class="btn btn-add">+ Add New Student</a>
+
+        <!-- Student Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.id}">1</td>
+                    <td th:text="${student.name}">John Doe</td>
+                    <td th:text="${student.age}">20</td>
+                    <td th:text="${student.email}">john@example.com</td>
+                    <td>
+                        <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-edit">Edit</a>
+                        <a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn btn-delete">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Student Form -->
+        <div th:if="${student != null}">
+            <h2 th:text="${student.id} == null ? 'Add Student' : 'Edit Student'"></h2>
+            <form th:action="${student.id} == null ? @{/students} : @{/students/update/{id}(id=${student.id})}" th:object="${student}" method="post">
+                <label>Name:</label>
+                <input type="text" th:field="*{name}" placeholder="Enter name" required>
+                
+                <label>Age:</label>
+                <input type="number" th:field="*{age}" placeholder="Enter age" required>
+                
+                <label>Email:</label>
+                <input type="email" th:field="*{email}" placeholder="Enter email" required>
+                
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

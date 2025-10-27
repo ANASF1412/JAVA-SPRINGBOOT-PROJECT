@@ -17,7 +17,7 @@ import com.example.demo.entity.Student;
 import com.example.demo.service.StudentService;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students") // Changed base path for REST API
 public class StudentController {
 
     private final StudentService studentService;

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" type="text/css" href="/css/Welcome.css" th:href="@{/css/Welcome.css}">
+</head>
+<body>
+    <!-- Neon floating circles -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <!-- Main Glassy Container -->
+    <div class="container">
+        <h1 th:text="${message}">Welcome Message</h1>
+        <p>Created by <span class="highlight" th:text="${author}">Author Name</span></p>
+        <p>Application Version: <span class="highlight" th:text="${version}">1.0.0</span></p>
+    </div>
+</body>
+</html>
